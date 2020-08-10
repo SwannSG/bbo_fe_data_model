@@ -27,10 +27,15 @@ class Bids {
     } else {
       levelStart = int.parse(lastDetails['lastLevel']);
     }
-    suitStart = _nextSuitUp(lastDetails['lastSuit']);
-    levels = _getLevels(levelStart);
-    suits = _getSuits(levelStart, suitStart);
-
+    if (lastDetails['lastLevel'] == '7' && lastDetails['lastSuit'] == 'N') {
+      // 7NT SPECIAL CASE
+      levels = [];
+      suits = {'': []};
+    } else {
+      suitStart = _nextSuitUp(lastDetails['lastSuit']);
+      levels = _getLevels(levelStart);
+      suits = _getSuits(levelStart, suitStart);
+    }
     // METHOD END
   }
 
